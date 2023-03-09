@@ -8,26 +8,26 @@ ini_set('display_errors', 1);
 date_default_timezone_set('UTC');
 
 //APPLICATION
+// define("APP_TITLE", "Gotap");
+// define('PRE_FIX', APP_TITLE);
+// define("BASE_URL", 'http://localhost:8000/');
+// define("IMAGE_BASE_URL", BASE_URL);
+
+// define("DB_HOST", "localhost");
+// define("DB_USER", "root");
+// define("DB_PASS", "");
+// define("DB_NAME", "gotaps");
+
+//APPLICATION
 define("APP_TITLE", "Gotap");
 define('PRE_FIX', APP_TITLE);
-define("BASE_URL", 'http://localhost:8000/');
+define("BASE_URL", 'http://gocoompany.com/');
 define("IMAGE_BASE_URL", BASE_URL);
 
 define("DB_HOST", "localhost");
-define("DB_USER", "root");
-define("DB_PASS", "");
-define("DB_NAME", "gotaps");
-
-//APPLICATION
-// define("APP_TITLE","Gotap");
-// define('PRE_FIX' , APP_TITLE);
-// define("BASE_URL",'http://gocoompany.com/');
-// define("IMAGE_BASE_URL",BASE_URL);
-
-// define("DB_HOST","localhost");
-// define("DB_USER","u986011478_gotap");
-// define("DB_PASS","Gotap123!");
-// define("DB_NAME","u986011478_gotap");
+define("DB_USER", "u986011478_gotap");
+define("DB_PASS", "Gotap123!");
+define("DB_NAME", "u986011478_gotap");
 
 //SMTP (EMAIL) 
 define("SMTP_HOST", "smtp.hostinger.com");
