@@ -1,6 +1,6 @@
 # config/config.php
 # public/uploads
-vendor
+/vendor
 
 # /config/config.php
 # /public/uploads

@@ -35,11 +35,9 @@
               unset($_SESSION['success']);
             }
             ?>
-
-
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Cards</h3>
+                <h3 class="card-title"></h3>
                 <a class="my-auto btn btn-info btn-sm mb-3 text-center float-right" href="/dashboard/cards/export">
                   <i class="mdi mdi-download me-2 "></i>
                   Download Inactive Cards
@@ -137,7 +135,7 @@
   <script>
     const toggleAssignStatus = (cardId) => {
       const btn = document.querySelector(`#assignBtn_${cardId}`);
-      
+
       fetch(`/dashboard/cards/change/${cardId}`)
         .then((response) => response.json())
         .then((data) => {
