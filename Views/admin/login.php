@@ -28,7 +28,7 @@
     <!-- /.login-logo -->
     <div class="card">
       <div class="card-body login-card-body">
-        <p class="login-box-msg">Sign in</p>
+        <p class="login-box-msg">Sign in to start your session</p>
 
         <form action="#" method="post">
           <?php csrf() ?>
