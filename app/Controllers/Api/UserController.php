@@ -22,7 +22,7 @@ class UserController extends Controller
 		if (!$res['user']->status) {
 			$this->response->json(["message" => "Sorry, Account is deactivated"]);
 		}
-		if (!$res['user']->is_suspended) {
+		if ($res['user']->is_suspended) {
 			$this->response->json(["message" => "Sorry, Account is suspended"]);
 		}
 
