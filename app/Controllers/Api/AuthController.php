@@ -135,7 +135,8 @@ class AuthController extends Controller
 		if ($user->status == 0) {
 			$updated = $this->db->table('users')->where('email', $request->email)->update(
 				[
-					'status' => 1
+					'status' => 1,
+					'deactivated_at' => null,
 				]
 			);
 			if ($updated) {

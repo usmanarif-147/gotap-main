@@ -95,9 +95,7 @@ class Email
     <html>
     <head>
       <!-- Meta -->
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Order Status</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">s
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link
       href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic|Open+Sans:400,600,700,300,300italic,400italic"
@@ -972,8 +970,6 @@ html { -webkit-text-size-adjust:none; -ms-text-size-adjust: none;}
     <head>
       <!-- Meta -->
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Order Status</title>
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
       <link
         href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic|Open+Sans:400,600,700,300,300italic,400italic"
@@ -1380,8 +1376,6 @@ html { -webkit-text-size-adjust:none; -ms-text-size-adjust: none;}
     <head>
       <!-- Meta -->
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Email</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link
       href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic|Open+Sans:400,600,700,300,300italic,400italic"

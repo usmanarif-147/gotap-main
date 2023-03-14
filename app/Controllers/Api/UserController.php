@@ -195,7 +195,8 @@ class UserController extends Controller
 		$user = $this->db->table('users')->where('id', $userId)->first();
 		$updated = $this->db->table('users')->where('id', $userId)->update(
 			[
-				'status' => 0
+				'status' => 0,
+				'deactivated_at' => date('Y-m-d H:i:s'),
 			]
 		);
 		if ($updated) {
