@@ -45,7 +45,7 @@
                       $i++;
                     ?>
                       <tr id="user_<?= $user->id ?>">
-                        <td style="width: 100px"><?= $user->name ?></td>
+                        <td style="width: 100px"><?= $user->name ? $user->name : 'N/A' ?></td>
                         <td style="width: 100px"><?= $user->email ?></td>
                         <td style="width: 100px"><?= $user->username ?></td>
                         <td style="width: 100px"><?= $user->tiks ?></td>
