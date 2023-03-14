@@ -104,13 +104,17 @@ class UserController extends Controller
         $user = $this->db->where('id', $id)->first('users');
         if (!$user->is_suspended) {
             $email = new Email();
-            $message = 'Your account is resumed.';
+            $message = "After the necessary verifications have been made by the Gotaps team on your account, your account has returned to normal status, from now on you can use the GOtaps application with your account in normal status.
+            Thank you for choosing to be part of the GOtaps Family.
+            #GOtapsFamily.";
             $email->isSuspendNotification($user->email, 'Account Resumed Notification', $message);
             echo json_encode(['message' => 'User account resumed successfully']);
         }
         if ($user->is_suspended) {
             $email = new Email();
-            $message = 'Your account is suspended.';
+            $message = "Your account has been temporarily suspended because your profile does not have one of the GOtaps products activated or your identity is fake. GOtaps is a community where people use their authentic identities and one of the GOtaps products. We ask that everyone provide their authentic name, so you always know who you're connecting to. Please review our Name and Activation Policy to learn more. To regain access to your account, send us an email to info@gotaps.me where you write that you already have a GOtaps product or an identification tool that shows your authenticity.
+            Thank you for choosing to be part of the GOtaps Family.
+            #GOtapsFamily";
             $email->isSuspendNotification($user->email, 'Account Suspended Notification', $message);
             echo json_encode(['message' => 'User account suspended successfully']);
         }

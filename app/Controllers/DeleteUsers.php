@@ -94,11 +94,11 @@ class DeleteUsers extends Controller
     // delete Account
     public function deleteAccount()
     {
-        $email = new Email();
-        $message = 'Account deletetion notification';
-        $email->accountDelete('usmanarif.9219@gmail.com', 'Account Deletion Notification', $message);
+        // $email = new Email();
+        // $message = 'Account deletetion notification';
+        // $email->accountDelete('usmanarif.9219@gmail.com', 'Account Deletion Notification', $message);
 
-        die();
+        // die();
 
         $users = $this->db->table('users')->where('deactivated_at', '!=', 'null')->get();
 
