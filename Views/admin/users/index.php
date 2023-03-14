@@ -25,7 +25,7 @@
 
             <div class="card">
               <!-- /.card-header -->
-              <div class="card-body">
+              <div class="card-body table-responsive">
                 <table id="example2" class="table table-bordered table-striped">
                   <thead>
                     <tr>
@@ -45,12 +45,12 @@
                       $i++;
                     ?>
                       <tr id="user_<?= $user->id ?>">
-                        <td><?= $user->name ?></td>
-                        <td><?= $user->email ?></td>
-                        <td><?= $user->username ?></td>
-                        <td><?= $user->tiks ?></td>
-                        <td><img width="70px" height="70px" src="/<?= $user->photo ? $user->photo : 'assets/default.png' ?>"></td>
-                        <td>
+                        <td style="width: 100px"><?= $user->name ?></td>
+                        <td style="width: 100px"><?= $user->email ?></td>
+                        <td style="width: 100px"><?= $user->username ?></td>
+                        <td style="width: 100px"><?= $user->tiks ?></td>
+                        <td style="width: 100px"><img width="70px" height="70px" src="/<?= $user->photo ? $user->photo : 'assets/default.png' ?>"></td>
+                        <td style="width: 100px">
                           <?php if ($user->status == 1 && $user->is_suspended == 0) {
                           ?>
                             <span class="badge badge-success">
@@ -73,21 +73,36 @@
                           ?>
                         </td>
 
-                        <th><?= $user->card_count ?></th>
-                        <td>
-                          <a class="btn btn-sm btn-info" href="/dashboard/users/edit/<?= $user->id ?>">edit</a>
-                          <?php if (!$user->card_count) {
-                          ?>
-                            <button id="sendNotification_<?= $user->id ?>" onClick="sendNotification(<?= $user->id ?>)" class="btn btn-sm btn-warning">
-                              Suspend Notification
-                            </button>
-                          <?php
-                          }
-                          ?>
-                          <a class="btn btn-sm btn-danger ml-2" href="#" onClick="deleteUser(<?= $user->id ?>)">delete</a>
-                          <button id="statusBtn_<?= $user->id ?>" onClick="toggleSuspendStatus(<?= $user->id ?>, <?= $user->is_suspended ?>)" class="btn btn-sm <?= $user->is_suspended ? 'btn-secondary' : 'btn-warning' ?>">
-                            <?= $user->is_suspended ? 'Resume' : 'Suspend' ?>
-                          </button>
+                        <th style="width: 100px"><?= $user->card_count ?></th>
+                        <td style="width: 100px">
+                          <div class="dropdown">
+                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+                              <i class="bi bi-three-dots"></i>
+                            </a>
+                            <div class="dropdown-menu">
+                              <a class="dropdown-item" href="/dashboard/users/edit/<?= $user->id ?>">Edit</a>
+                              <?php if (!$user->card_count) {
+                              ?>
+                                <a class="dropdown-item" id="sendNotification_<?= $user->id ?>" onClick="sendNotification(<?= $user->id ?>)" href="javascript:void(0)">
+                                  Suspend Notification
+                                </a>
+                              <?php
+                              }
+                              ?>
+                              <a class="dropdown-item" href="javascript:void(0)" onClick="deleteUser(<?= $user->id ?>)">Delete</a>
+                              <?php if ($user->status) {
+                              ?>
+                                <a id="statusBtn_<?= $user->id ?>" href="javascript:void(0)" onClick="toggleSuspendStatus(<?= $user->id ?>, <?= $user->is_suspended ?>)" class="dropdown-item">
+                                  <?= $user->is_suspended ? 'Resume' : 'Suspend' ?>
+                                </a>
+                              <?php
+                              }
+                              ?>
+                              <a id="authBtn_<?= $user->id ?>" class="dropdown-item" href="javascript:void(0)" onClick="toggleUserStatus(<?= $user->id ?>, <?= $user->status ?>)">
+                                <?= $user->status ? 'Deactivate' : 'Activate' ?>
+                              </a>
+                            </div>
+                          </div>
                         </td>
                       </tr>
                     <?php } ?>
@@ -201,6 +216,51 @@
         if (result.isConfirmed) {
           // Make the AJAX call using jQuery
           fetch(`/dashboard/users/suspendNotification/${userId}`)
+            .then((response) => response.json())
+            .then((data) => {
+              const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                  toast.addEventListener('mouseenter', Swal.stopTimer)
+                  toast.addEventListener('mouseleave', Swal.resumeTimer)
+                },
+                didClose: () => {
+                  location.reload();
+                }
+              })
+              Toast.fire({
+                icon: 'success',
+                title: data.message
+              })
+            });
+        }
+      });
+
+    }
+  </script>
+
+  <script>
+    const toggleUserStatus = (userId, status) => {
+
+      let textMessage = status == 1 ? 'You want to deactivate user account.' : 'You want to activate user account.';
+      // Display the SweetAlert2 confirmation dialog
+      Swal.fire({
+        title: 'Are you sure?',
+        text: textMessage,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes!'
+      }).then((result) => {
+        // If the user clicked "Yes"
+        if (result.isConfirmed) {
+          // Make the AJAX call using jQuery
+          fetch(`/dashboard/users/changeUserStatus/${userId}`)
             .then((response) => response.json())
             .then((data) => {
               const Toast = Swal.mixin({

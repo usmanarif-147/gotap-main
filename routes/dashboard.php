@@ -20,6 +20,7 @@ $router->post('/users/edit/{num}', [UserController::class, 'update']);
 $router->get('/users/delete/{num}', [UserController::class, 'destroy']);
 $router->get('/users/suspendNotification/{num}', [UserController::class, 'suspendNotification']);
 $router->get('/users/changeSuspendStatus/{num}', [UserController::class, 'changeSuspendStatus']);
+$router->get('/users/changeUserStatus/{num}', [UserController::class, 'changeUserStatus']);
 
 //PLATFROMS
 $router->get('/platforms', [PlatformController::class, 'index']);

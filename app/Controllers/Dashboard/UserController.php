@@ -122,6 +122,31 @@ class UserController extends Controller
         // 		return $this->response->json(['message' => 'Statuse Updated successfully']);
     }
 
+    public function changeUserStatus($id)
+    {
+        $user = $this->db->where('id', $id)->first('users');
+
+        $user = $this->db->table('users')->where('id', $id)->update([
+            'status' => $user->status ? 0 : 1,
+            'deactivated_at' => $user->status ? date('Y-m-d H:i:s') : null,
+        ]);
+
+        $user = $this->db->where('id', $id)->first('users');
+        if ($user->status) {
+            $email = new Email();
+            $message = "Your account is activated.";
+            $email->isSuspendNotification($user->email, 'Account Acticated Notification', $message);
+            echo json_encode(['message' => 'User account activated successfully']);
+        } else {
+            $email = new Email();
+            $message = "Your account is dectivated.";
+            $email->isSuspendNotification($user->email, 'Account Deactivated Notification', $message);
+            echo json_encode(['message' => 'User account deactivated successfully']);
+        }
+        exit();
+        // 		return $this->response->json(['message' => 'Statuse Updated successfully']);
+    }
+
 
     public function destroy($id)
     {

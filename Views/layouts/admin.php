@@ -82,7 +82,7 @@
         "ordering": true,
         "info": true,
         "autoWidth": true,
-        "responsive": true,
+        // "responsive": true,
       });
     });
   </script>
