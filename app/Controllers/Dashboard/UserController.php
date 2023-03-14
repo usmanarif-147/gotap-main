@@ -137,7 +137,8 @@ class UserController extends Controller
             $message = "Your account is activated.";
             $email->isSuspendNotification($user->email, 'Account Acticated Notification', $message);
             echo json_encode(['message' => 'User account activated successfully']);
-        } else {
+        }
+        if (!$user->status) {
             $email = new Email();
             $message = "Your account is dectivated.";
             $email->isSuspendNotification($user->email, 'Account Deactivated Notification', $message);

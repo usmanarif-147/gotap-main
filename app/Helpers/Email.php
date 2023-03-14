@@ -92,11 +92,10 @@ class Email
   public function accountDeleteEmail($message)
   {
     $template = '
-    <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <!-- Meta -->
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <html>
+    <head>
+      <!-- Meta -->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order Status</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -273,9 +272,10 @@ class Email
   public function resetPasswordTemplate($OTP)
   {
     $template = '
-	    <html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <html>
+    <head>
+      <!-- Meta -->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -826,9 +826,10 @@ html { -webkit-text-size-adjust:none; -ms-text-size-adjust: none;}
   public function accountDeactivtedMail($message)
   {
     $template = '
-	    <html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <html>
+    <head>
+      <!-- Meta -->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -1375,10 +1376,10 @@ html { -webkit-text-size-adjust:none; -ms-text-size-adjust: none;}
   public function isSuspendNotificationEmail($message)
   {
     $template = '
-<html>
-  <head>
-    <!-- Meta -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <html>
+    <head>
+      <!-- Meta -->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Email</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
