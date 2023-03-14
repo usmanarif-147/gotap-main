@@ -88,8 +88,8 @@ class UserController extends Controller
     {
         $user = $this->db->where('id', $id)->first('users');
         $email = new Email();
-        $message = 'We regret to inform you that your account will be suspend if gotap team did not find any activity from your account.';
-        $email->isSuspendNotification($user->email, 'Account Suspend Notification', $message);
+        $message = 'We regret to inform you that your account will be suspended shortly if you do not have one of our gotaps products activated To activate one of the products, you must first buy one. Below you will find our products.';
+        $email->sendSuspendNotification($user->email, 'Account Suspend Notification', $message);
         echo json_encode(['message' => 'Suspend notification has been sent successfully']);
     }
 

@@ -100,7 +100,7 @@ class DB extends DbHelper
 
     public function where($col, $val, $opr = "=")
     {
-        $operators = ['=', '>', '<', '>', '!=', '>=', '<=', 'LIKE', 'IN'];
+        $operators = ['=', '>', '<', '>', '!=', '>=', '<=', 'LIKE', 'IN', 'IS', 'IS NOT'];
 
         if (is_numeric($col)) die("invalid col $col");
 

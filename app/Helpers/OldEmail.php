@@ -7,7 +7,7 @@ use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 use app\Models\DB;
 
-class Email
+class OldEmail
 {
   protected $db;
   function __construct()
@@ -43,22 +43,16 @@ class Email
     return $this->sendEmail($email, 'Account Deactivated Successfully', $body);
   }
 
-  public function isSuspendNotification($email, $type, $message)
-  {
-    $body = $this->isSuspendNotificationEmail($message);
-    return $this->sendEmail($email, $type, $body);
-  }
-
-  public function sendSuspendNotification($email, $type, $message)
-  {
-    $body = $this->sendSuspendNotificationEmail($message);
-    return $this->sendEmail($email, $type, $body);
-  }
-
   public function accountDelete($email, $header,  $message)
   {
     $body = $this->accountDeleteEmail($message);
     return $this->sendEmail($email, $header, $body);
+  }
+
+  public function isSuspendNotification($email, $type, $message)
+  {
+    $body = $this->isSuspendNotificationEmail($message);
+    return $this->sendEmail($email, $type, $body);
   }
 
   public function  sendEmail($email, $subject, $body)
@@ -72,6 +66,7 @@ class Email
     $this->mail->Password = SMTP_PASS;
     //If SMTP requires TLS encryption then set it
     $this->mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+
     $this->mail->Port = SMTP_PORT;
 
     $this->mail->setFrom(SMTP_EMAIL, APP_TITLE);
@@ -82,10 +77,12 @@ class Email
     $this->mail->Body = $body;
     $this->mail->AltBody = "This is the Reset Password Email from Gotap";
     if (!$this->mail->send()) {
+      die("not sent");
       //die("Mailer Error: " . $this->mail->ErrorInfo);  
       return false;
     } else
-      return true;
+      die("sent");
+    return true;
   }
 
 
@@ -269,7 +266,6 @@ class Email
   }
 
 
-
   public function resetPasswordTemplate($OTP)
   {
     $template = '
@@ -418,7 +414,7 @@ html { -webkit-text-size-adjust:none; -ms-text-size-adjust: none;}
   {
 
     $html = '
-    
+
         <!doctype html>
 <html>
   <head>
@@ -965,421 +961,15 @@ html { -webkit-text-size-adjust:none; -ms-text-size-adjust: none;}
   }
 
 
-  public function sendSuspendNotificationEmail($message)
-  {
-    $template = '<html>
-    <head>
-      <!-- Meta -->
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Order Status</title>
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-      <link
-        href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic|Open+Sans:400,600,700,300,300italic,400italic"
-        rel="stylesheet"
-        type="text/css"
-      />
-      <!-- CSS -->
-      <style type="text/css">
-        body {
-          margin: 0;
-          padding: 0;
-          font-family: Helvetica Neue, Helvetica, sans-serif, "Open Sans";
-        }
-  
-        [style*="Open Sans"] {
-          font-family: "Open Sans", Helvetica Neue, Helvetica, sans-serif !important;
-        }
-  
-        [style*="Lato"] {
-          font-family: "Lato", Helvetica Neue, Helvetica, sans-serif !important;
-        }
-  
-        a[x-apple-data-detectors="true"] {
-          color: inherit !important;
-          text-decoration: inherit !important;
-        }
-  
-        a:link {
-          text-decoration: none;
-        }
-      </style>
-    </head>
-  
-    <body>
-      <!-- Email header -->
-      <table border="0" cellpadding="0" cellspacing="0" width="100%">
-        <tr>
-          <td align="center">
-            <table
-              border="0"
-              cellpadding="0"
-              cellspacing="0"
-              width="90%"
-              style="max-width: 600px"
-            >
-              <tr>
-                <td
-                  align="center"
-                  valign="top"
-                  style="padding: 10px 0px 12px 0px"
-                  colspan="3"
-                >
-                  <img
-                    src="https://gotaps.me/wp-content/uploads/2022/05/gotapswenblognewvers-01.png"
-                    height="150"
-                    border="0"
-                    alt="Affinity"
-                    style="
-                      font-family: Arial, Helvetica, sans-serif;
-                      color: rgb(219, 210, 210);
-                      font-size: 17px;
-                      font-weight: bold;
-                    "
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td
-                  align="center"
-                  valign="top"
-                  style="
-                    color: #000;
-                    font-family: Arial, Helvetica, sans-serif;
-                    font-size: 24px;
-                    font-weight: 800;
-                    mso-line-height-rule: exactly;
-                    line-height: 38px;
-                    margin: 0;
-                  "
-                  colspan="3"
-                >
-                  GOtaps
-                </td>
-              </tr>
-  
-              <!-- Email body -->
-  
-              <tr>
-                <td style="padding: 0 0 24px 0" colspan="3"></td>
-              </tr>
-              <tr>
-                <td
-                  align="center"
-                  valign="top"
-                  style="
-                    padding: 0px 0px 24px 0px;
-                    padding-left: 10px;
-                    color: #fff;
-                    font-family: Helvetica Neue, Helvetica, sans-serif, Open Sans;
-                    font-size: 17px;
-                    font-weight: 400;
-                    mso-line-height-rule: exactly;
-                    line-height: 25px;
-                    margin: 0;
-                    text-align: center;
-                    background: #000;
-                    padding: 30px 15px;
-                  "
-                  colspan="3"
-                >
-                  ' . $message . '
-                </td>
-              </tr>
-              <tr>
-                <td width="5" style="width: 3px">&nbsp;</td>
-              </tr>
-  
-              <tr></tr>
-              <tr>
-                <td
-                  align="center"
-                  valign="top"
-                  style="
-                    padding: 24px 0px 0px 0px;
-                    color: rgb(219, 210, 210);
-                    font-family: Helvetica Neue, Helvetica, sans-serif, Open Sans;
-                    font-size: 13px;
-                    font-weight: 400;
-                    mso-line-height-rule: exactly;
-                    line-height: 19px;
-                    margin: 0;
-                  "
-                  colspan="3"
-                >
-                  <!-- COPY -->
-                  <div
-                    class="products"
-                    style="margin: 15px 0px 15px 0; text-align: center"
-                  >
-                    <a
-                      href="#"
-                      style="
-                        height: 120px;
-                        width: 120px;
-                        margin: 30px 10px;
-                        display: inline-block;
-                        text-decoration: none;
-                      "
-                    >
-                      <img
-                        style="text-align: center; height: 100%; width: 100%"
-                        src="https://app.gocoompany.com/products/Animal@3x.png"
-                        alt=""
-                      />
-                      <p
-                        style="
-                          color: #000;
-                          font-size: 20px;
-                          font-weight: 500;
-                          font-family: Arial, Helvetica, sans-serif;
-                        "
-                      >
-                        Sticker
-                      </p>
-                    </a>
-                    <a
-                      href="#"
-                      style="
-                        height: 120px;
-                        width: 120px;
-                        margin: 30px 10px;
-                        display: inline-block;
-                        text-decoration: none;
-                      "
-                    >
-                      <img
-                        style="text-align: center; height: 100%; width: 100%"
-                        src="https://app.gocoompany.com/products/ebadge@3x.png"
-                        alt=""
-                      />
-                      <p
-                        style="
-                          color: #000;
-                          font-size: 20px;
-                          font-weight: 500;
-                          font-family: Arial, Helvetica, sans-serif;
-                        "
-                      >
-                        Sticker
-                      </p>
-                    </a>
-                    <a
-                      href="#"
-                      style="
-                        height: 120px;
-                        width: 120px;
-                        margin: 30px 10px;
-                        display: inline-block;
-                        text-decoration: none;
-                      "
-                    >
-                      <img
-                        style="text-align: center; height: 100%; width: 100%"
-                        src="https://app.gocoompany.com/products/gotaps_case@3x.png"
-                        alt=""
-                      />
-                      <p
-                        style="
-                          color: #000;
-                          font-size: 20px;
-                          font-weight: 500;
-                          font-family: Arial, Helvetica, sans-serif;
-                        "
-                      >
-                        Sticker
-                      </p>
-                    </a>
-                    <a
-                      href="#"
-                      style="
-                        height: 120px;
-                        width: 120px;
-                        margin: 30px 10px;
-                        display: inline-block;
-                        text-decoration: none;
-                      "
-                    >
-                      <img
-                        style="text-align: center; height: 100%; width: 100%"
-                        src="https://app.gocoompany.com/products/gotapsbarcaletshop@3x.png"
-                        alt=""
-                      />
-                      <p
-                        style="
-                          color: #000;
-                          font-size: 20px;
-                          font-weight: 500;
-                          font-family: Arial, Helvetica, sans-serif;
-                        "
-                      >
-                        Sticker
-                      </p>
-                    </a>
-                    <a
-                      href="#"
-                      style="
-                        height: 120px;
-                        width: 120px;
-                        margin: 30px 10px;
-                        display: inline-block;
-                        text-decoration: none;
-                      "
-                    >
-                      <img
-                        style="text-align: center; height: 100%; width: 100%"
-                        src="https://app.gocoompany.com/products/gotapsshop-01@3x.png"
-                        alt=""
-                      />
-                      <p
-                        style="
-                          color: #000;
-                          font-size: 20px;
-                          font-weight: 500;
-                          font-family: Arial, Helvetica, sans-serif;
-                        "
-                      >
-                        Sticker
-                      </p>
-                    </a>
-                    <a
-                      href="#"
-                      style="
-                        height: 120px;
-                        width: 120px;
-                        margin: 30px 10px;
-                        display: inline-block;
-                        text-decoration: none;
-                      "
-                    >
-                      <img
-                        style="text-align: center; height: 100%; width: 100%"
-                        src="https://app.gocoompany.com/products/lohder1.png"
-                        alt=""
-                      />
-                      <p
-                        style="
-                          color: #000;
-                          font-size: 20px;
-                          font-weight: 500;
-                          font-family: Arial, Helvetica, sans-serif;
-                        "
-                      >
-                        Sticker
-                      </p>
-                    </a>
-                    <!-- <a
-                      href="#"
-                      style="
-                        height: 120px;
-                        width: 120px;
-                        margin: 30px 10px;
-                        display: inline-block;
-                        text-decoration: none;
-                      "
-                    >
-                      <img
-                        style="text-align: center; height: 100%; width: 100%"
-                        src="/assets/v1.jpeg"
-                        alt=""
-                      />
-                      <p
-                        style="
-                          color: #000;
-                          font-size: 20px;
-                          font-weight: 500;
-                          font-family: Arial, Helvetica, sans-serif;
-                        "
-                      >
-                        Sticker
-                      </p>
-                    </a> -->
-                    <!-- <a
-                      href="#"
-                      style="
-                        height: 120px;
-                        width: 120px;
-                        margin: 30px 10px;
-                        display: inline-block;
-                        text-decoration: none;
-                      "
-                    >
-                      <img
-                        style="text-align: center; height: 100%; width: 100%"
-                        src="/assets/v2.jpeg"
-                        alt=""
-                      />
-                      <p
-                        style="
-                          color: #000;
-                          font-size: 20px;
-                          font-weight: 500;
-                          font-family: Arial, Helvetica, sans-serif;
-                        "
-                      >
-                        Sticker
-                      </p>
-                    </a> -->
-                  </div>
-                  <div style="padding: 40px 0">
-                    <a
-                      href="https://gotaps.me/standard-products/"
-                      style="
-                        width: fit-content;
-                        text-decoration: none;
-                        background: #000;
-                        color: #fff;
-                        padding: 15px 35px;
-                        font-size: 16px;
-                        font-weight: 800;
-                        border-radius: 32px;
-                        margin: 20px 0;
-                      "
-                    >
-                      Buy Now
-                    </a>
-                  </div>
-                  <span
-                    style="
-                      color: #fff;
-                      font-size: 14px;
-                      font-weight: 800;
-                      width: 100%;
-                      background: #000;
-                      display: block;
-                      padding: 10px 0px;
-                    "
-                  >
-                    <span id="copyright"> </span> &#169; Gotaps.me .ALL Rights
-                    Reserved.
-                  </span>
-                </td>
-              </tr>
-            </table>
-          </td>
-        </tr>
-      </table>
-  
-      <script>
-        document
-          .getElementById("copyright")
-          .appendChild(document.createTextNode(new Date().getFullYear()));
-      </script>
-    </body>
-  
-  </html>';
-
-    return $template;
-  }
-
   public function isSuspendNotificationEmail($message)
   {
     $template = '
-<html>
+    <!DOCTYPE html>
+<html lang="en">
   <head>
     <!-- Meta -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Email</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Order Status</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link
@@ -1549,4 +1139,160 @@ html { -webkit-text-size-adjust:none; -ms-text-size-adjust: none;}
 
     return $template;
   }
+
+
+  public function oldisSuspendNotificationEmail($message)
+  {
+    $template = '
+	    <html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+</head>
+<style>
+
+body {
+    padding: 0;
+    margin: 0;
 }
+
+html { -webkit-text-size-adjust:none; -ms-text-size-adjust: none;}
+@media only screen and (max-device-width: 680px), only screen and (max-width: 680px) { 
+    *[class="table_width_100"] {
+		width: 96% !important;
+	}
+	*[class="border-right_mob"] {
+		border-right: 1px solid #dddddd;
+	}
+	*[class="mob_100"] {
+		width: 100% !important;
+	}
+	*[class="mob_center"] {
+		text-align: center !important;
+	}
+	*[class="mob_center_bl"] {
+		float: none !important;
+		display: block !important;
+		margin: 0px auto;
+	}	
+	.iage_footer a {
+		text-decoration: none;
+		color: #929ca8;
+	}
+	img.mob_display_none {
+		width: 0px !important;
+		height: 0px !important;
+		display: none !important;
+	}
+	img.mob_width_50 {
+		width: 40% !important;
+		height: auto !important;
+	}
+}
+.table_width_100 {
+	width: 680px;
+}
+</style>
+</head>
+<body>
+
+<div id="mailsub" class="notification" align="center">
+    <!--<div align="center">
+       <img src="http://talmanagency.com/wp-content/uploads/2014/12/cropped-logo-new.png" width="250" alt="Metronic" border="0"  /> 
+    </div> -->
+<table width="100%" border="0" cellspacing="0" cellpadding="0" style="min-width: 320px;"><tr><td align="center" bgcolor="#eff3f8">
+
+<table border="0" cellspacing="0" cellpadding="0" class="table_width_100" width="100%" style="max-width: 680px; min-width: 300px;">
+    <tr><td>
+	<!-- padding -->
+	</td></tr>
+	<!--header -->
+	<tr><td align="center" bgcolor="#ffffff">
+		<!-- padding -->
+		<table width="90%" border="0" cellspacing="0" cellpadding="0">
+			<tr><td align="center">
+			    		<a href="#" target="_blank" style="color: #596167; font-family: Arial, Helvetica, sans-serif; float:left; width:100%; padding:20px;text-align:center; font-size: 13px;">
+									<font face="Arial, Helvetica, sans-seri; font-size: 13px;" size="3" color="#596167">
+									<img src="https://app.gocoompany.com/assets/logo.png" width="250" alt="Go App" border="0"  /></font></a>
+					</td>
+					<td align="right">
+				<!--[endif]--><!-- 
+
+			</td>
+			</tr>
+		</table>
+		<!-- padding -->
+	</td></tr>
+	<!--header END-->
+
+	<!--content 1 -->
+	<tr><td align="center" bgcolor="#fbfcfd">
+	    <font face="Arial, Helvetica, sans-serif" size="4" color="#57697e" style="font-size: 15px;">
+		<table width="90%" border="0" cellspacing="0" cellpadding="0">
+			<tr><td>
+			    <h4 style="text-align:center">' . $message . '</h4>
+			</td></tr>
+			<!--<tr><td align="center">
+				<div style="line-height: 24px;">
+					<a href="#" target="_blank" class="btn btn-danger block-center">
+					    click
+					</a>
+				</div>
+				<div style="height: 60px; line-height: 60px; font-size: 10px;"></div>
+			</td></tr>-->
+
+		</table>
+		</font>
+	</td></tr>
+	<!--content 1 END-->
+
+	<!--footer -->
+	<tr><td class="iage_footer" align="center" bgcolor="#ffffff">
+
+		
+		<table width="100%" border="0" cellspacing="0" cellpadding="0">
+			<tr><td align="center" style="padding:20px;flaot:left;width:100%; text-align:center;">
+				<font face="Arial, Helvetica, sans-serif" size="3" color="#96a5b5" style="font-size: 13px;">
+				<span style="font-family: Arial, Helvetica, sans-serif; font-size: 13px; color: #96a5b5;">
+					2021 © Gotap. ALL Rights Reserved.
+				</span></font>				
+			</td></tr>			
+		</table>
+	</td></tr>
+	<!--footer END-->
+	<tr><td>
+
+	</td></tr>
+</table>
+<!--[if gte mso 10]>
+</td></tr>
+</table>
+<![endif]-->
+ 
+</td></tr>
+</table>
+<body>
+
+</html>
+			
+';
+    return $template;
+  }
+}
+
+
+
+
+
+/* 
+CREATE TABLE IF NOT EXISTS reset_tokens (
+  id int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  email varchar(255) NOT NULL,
+  token varchar(255) NOT NULL,
+  expiry int(11) NOT NULL,
+  created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+*/

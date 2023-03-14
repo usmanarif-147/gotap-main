@@ -8,33 +8,36 @@ ini_set('display_errors', 1);
 date_default_timezone_set('UTC');
 
 //LOCAL
-
-// define("APP_TITLE", "Gotap");
-// define('PRE_FIX', APP_TITLE);
-// define("BASE_URL", 'http://localhost:8000/');
-// define("IMAGE_BASE_URL", BASE_URL);
-// define("DB_HOST", "localhost");
-// define("DB_USER", "root");
-// define("DB_PASS", "");
-// define("DB_NAME", "gotaps");
-
-//LIVE
-
 define("APP_TITLE", "Gotap");
 define('PRE_FIX', APP_TITLE);
-define("BASE_URL", 'http://gocoompany.com/');
+define("BASE_URL", 'http://localhost:8000/');
 define("IMAGE_BASE_URL", BASE_URL);
 define("DB_HOST", "localhost");
-define("DB_USER", "u986011478_gotap");
-define("DB_PASS", "Gotap123!");
-define("DB_NAME", "u986011478_gotap");
+define("DB_USER", "root");
+define("DB_PASS", "");
+define("DB_NAME", "gotaps");
+
+// LOCAL
+define("SMTP_HOST", "smtp.gmail.com");
+define("SMTP_PORT", "587");
+define("SMTP_EMAIL", "webnerds777@gmail.com");
+define("SMTP_PASS", 'dilitsjrzaitughl');
+
+//LIVE
+// define("APP_TITLE", "Gotap");
+// define('PRE_FIX', APP_TITLE);
+// define("BASE_URL", 'http://gocoompany.com/');
+// define("IMAGE_BASE_URL", BASE_URL);
+// define("DB_HOST", "localhost");
+// define("DB_USER", "u986011478_gotap");
+// define("DB_PASS", "Gotap123!");
+// define("DB_NAME", "u986011478_gotap");
 
 //SMTP (EMAIL) 
-define("SMTP_HOST", "smtp.hostinger.com");
-define("SMTP_PORT", "587");
-define("SMTP_EMAIL", "noreply@gocoompany.com");
-// define("SMTP_EMAIL", "usmanarif.9219@gmail.com");
-define("SMTP_PASS", "Gotaps2022!");
+// define("SMTP_HOST", "smtp.hostinger.com");
+// define("SMTP_PORT", "587");
+// define("SMTP_EMAIL", "noreply@gocoompany.com");
+// define("SMTP_PASS", "Gotaps2022!");
 
 //FIREBASE
 
