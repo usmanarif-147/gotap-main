@@ -71,9 +71,15 @@ class UserController extends Controller
 			'name' => ['str', 'min:3', 'max:40'],
 			'address' => ['str', 'min:3', 'max:60'],
 			'work_position' => ['min:2', 'max:20'],
-			// 'cover_photo' =>['req'],
-			//'gender' =>['in:1,2,3,4']
+			'job_title' => ['str'],
+			'company' => ['str']
 		]);
+
+		if (!count($request->all())) {
+			$user = $this->db->where('id', LOGGED_USER)->first('users');
+			$this->response->json(["status" => 200, "message" => "User Updated Successfully", 'data' => $user]);
+		}
+
 		$request->unset('password');
 		$user = $this->db->where('id', LOGGED_USER)->first('users');
 		$oldPhoto = $user->photo;
