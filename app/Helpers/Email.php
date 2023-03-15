@@ -1498,8 +1498,60 @@ html { -webkit-text-size-adjust:none; -ms-text-size-adjust: none;}
               </td>
             </tr>
             <tr>
-              <td width="5" style="width: 3px">&nbsp;</td>
-            </tr>
+                <td width="5" style="width: 3px">&nbsp;</td>
+              </tr>
+  
+              <tr></tr>
+              <tr>
+                <td
+                  align="center"
+                  valign="top"
+                  style="
+                    padding: 24px 0px 0px 0px;
+                    color: rgb(219, 210, 210);
+                    font-family: Helvetica Neue, Helvetica, sans-serif, Open Sans;
+                    font-size: 13px;
+                    font-weight: 400;
+                    mso-line-height-rule: exactly;
+                    line-height: 19px;
+                    margin: 0;
+                  "
+                  colspan="3"
+                >
+                  <div style="padding: 40px 0">
+                    <a
+                      href="https://gotaps.me/standard-products/"
+                      style="
+                        width: fit-content;
+                        text-decoration: none;
+                        background: #000;
+                        color: #fff;
+                        padding: 15px 35px;
+                        font-size: 16px;
+                        font-weight: 800;
+                        border-radius: 32px;
+                        margin: 20px 0;
+                      "
+                    >
+                      Buy Now
+                    </a>
+                  </div>
+                  <span
+                    style="
+                      color: #fff;
+                      font-size: 14px;
+                      font-weight: 800;
+                      width: 100%;
+                      background: #000;
+                      display: block;
+                      padding: 10px 0px;
+                    "
+                  >
+                    <span id="copyright"> </span> &#169; Gotaps.me .ALL Rights
+                    Reserved.
+                  </span>
+                </td>
+              </tr>
 
             <tr>
               <td

@@ -7,7 +7,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 date_default_timezone_set('UTC');
 
-//LOCAL
+// LOCAL
 // define("APP_TITLE", "Gotap");
 // define('PRE_FIX', APP_TITLE);
 // define("BASE_URL", 'http://localhost:8000/');
@@ -31,6 +31,7 @@ define("DB_NAME", "u986011478_gotap");
 // define("SMTP_HOST", "smtp.hostinger.com");
 // define("SMTP_PORT", "587");
 // define("SMTP_EMAIL", "noreply@gocoompany.com");
+// define("SMTP_PASS", "GOtaps.1email");
 // define("SMTP_PASS", "Gotaps2022!");
 
 // LOCAL
