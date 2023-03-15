@@ -134,13 +134,17 @@ class UserController extends Controller
         $user = $this->db->where('id', $id)->first('users');
         if ($user->status) {
             $email = new Email();
-            $message = "Your account is activated.";
+            $message = "After the necessary verifications have been made by the Gotaps team on your account, your account has activated , from now on you can use the GOtaps application with your account in normal status.
+            Thank you for choosing to be part of the GOtaps Family.
+            #GOtapsFamily.";
             $email->isSuspendNotification($user->email, 'Account Acticated Notification', $message);
             echo json_encode(['message' => 'User account activated successfully']);
         }
         if (!$user->status) {
             $email = new Email();
-            $message = "Your account is dectivated.";
+            $message = "our account is deactivated because it is not your profile, it is for unauthorized storage according to Gotaps policies, for more information, please visit our website at gotaps.me/privacy/. Please review our retention policy to learn more. To regain access to your account, send us an email to info@gotaps.me with the reason why you want us to activate your account.
+            Thank you for choosing to be part of the GOtaps Family.
+            #GOTapFamily";
             $email->isSuspendNotification($user->email, 'Account Deactivated Notification', $message);
             echo json_encode(['message' => 'User account deactivated successfully']);
         }
