@@ -63,8 +63,8 @@ class Email
 
   public function  sendEmail($email, $subject, $body)
   {
-    //$this->mail->SMTPDebug = SMTP::DEBUG_SERVER;                      // Enable verbose debug output            
-    //$this->mail->SMTPDebug = 1;                               
+    // $this->mail->SMTPDebug = SMTP::DEBUG_SERVER;                      // Enable verbose debug output            
+    // $this->mail->SMTPDebug = 1;
     $this->mail->isSMTP();
     $this->mail->Host = SMTP_HOST;
     $this->mail->SMTPAuth = true;
@@ -92,6 +92,7 @@ class Email
   public function accountDeleteEmail($message)
   {
     $template = '
+    <!doctype html>
     <html>
     <head>
       <!-- Meta -->
@@ -270,6 +271,7 @@ class Email
   public function resetPasswordTemplate($OTP)
   {
     $template = '
+    <!doctype html>
     <html>
     <head>
       <!-- Meta -->
@@ -416,7 +418,6 @@ html { -webkit-text-size-adjust:none; -ms-text-size-adjust: none;}
   {
 
     $html = '
-    
         <!doctype html>
 <html>
   <head>
@@ -824,6 +825,7 @@ html { -webkit-text-size-adjust:none; -ms-text-size-adjust: none;}
   public function accountDeactivtedMail($message)
   {
     $template = '
+    <!doctype html>
     <html>
     <head>
       <!-- Meta -->
@@ -966,7 +968,9 @@ html { -webkit-text-size-adjust:none; -ms-text-size-adjust: none;}
 
   public function sendSuspendNotificationEmail($message)
   {
-    $template = '<html>
+    $template = '
+    <!doctype html>
+    <html>
     <head>
       <!-- Meta -->
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -1372,6 +1376,7 @@ html { -webkit-text-size-adjust:none; -ms-text-size-adjust: none;}
   public function isSuspendNotificationEmail($message)
   {
     $template = '
+    <!doctype html>
     <html>
     <head>
       <!-- Meta -->

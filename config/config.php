@@ -34,7 +34,7 @@ define("DB_NAME", "u986011478_gotap");
 // define("SMTP_PASS", "Gotaps2022!");
 
 // LOCAL
-define("SMTP_HOST", "smtp.gmail.com");
+define("SMTP_HOST", "smtp.hostinger.com");
 define("SMTP_PORT", "587");
 define("SMTP_EMAIL", "webnerds777@gmail.com");
 define("SMTP_PASS", 'dilitsjrzaitughl');
