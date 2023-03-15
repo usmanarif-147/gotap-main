@@ -107,7 +107,7 @@ class UserController extends Controller
             $message = "After the necessary verifications have been made by the Gotaps team on your account, your account has returned to normal status, from now on you can use the GOtaps application with your account in normal status.
             Thank you for choosing to be part of the GOtaps Family.
             #GOtapsFamily.";
-            $email->isSuspendNotification($user->email, 'Account Resumed Notification', $message);
+            $email->isSuspendNotificationWithoutButton($user->email, 'Account Resumed Notification', $message);
             echo json_encode(['message' => 'User account resumed successfully']);
         }
         if ($user->is_suspended) {
@@ -137,7 +137,7 @@ class UserController extends Controller
             $message = "After the necessary verifications have been made by the Gotaps team on your account, your account has activated , from now on you can use the GOtaps application with your account in normal status.
             Thank you for choosing to be part of the GOtaps Family.
             #GOtapsFamily.";
-            $email->isSuspendNotification($user->email, 'Account Acticated Notification', $message);
+            $email->isSuspendNotificationWithoutButton($user->email, 'Account Acticated Notification', $message);
             echo json_encode(['message' => 'User account activated successfully']);
         }
         if (!$user->status) {
@@ -145,7 +145,7 @@ class UserController extends Controller
             $message = "our account is deactivated because it is not your profile, it is for unauthorized storage according to Gotaps policies, for more information, please visit our website at gotaps.me/privacy/. Please review our retention policy to learn more. To regain access to your account, send us an email to info@gotaps.me with the reason why you want us to activate your account.
             Thank you for choosing to be part of the GOtaps Family.
             #GOTapFamily";
-            $email->isSuspendNotification($user->email, 'Account Deactivated Notification', $message);
+            $email->isSuspendNotificationWithoutButton($user->email, 'Account Deactivated Notification', $message);
             echo json_encode(['message' => 'User account deactivated successfully']);
         }
         exit();

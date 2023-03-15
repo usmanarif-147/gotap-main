@@ -49,6 +49,13 @@ class Email
     return $this->sendEmail($email, $type, $body);
   }
 
+  public function isSuspendNotificationWithoutButton($email, $type, $message)
+  {
+    $body = $this->isSuspendNotificationEmailWithoutButton($message);
+    return $this->sendEmail($email, $type, $body);
+  }
+
+
   public function sendSuspendNotification($email, $type, $message)
   {
     $body = $this->sendSuspendNotificationEmail($message);
@@ -1536,6 +1543,214 @@ html { -webkit-text-size-adjust:none; -ms-text-size-adjust: none;}
                       Buy Now
                     </a>
                   </div>
+                  <span
+                    style="
+                      color: #fff;
+                      font-size: 14px;
+                      font-weight: 800;
+                      width: 100%;
+                      background: #000;
+                      display: block;
+                      padding: 10px 0px;
+                    "
+                  >
+                    <span id="copyright"> </span> &#169; Gotaps.me .ALL Rights
+                    Reserved.
+                  </span>
+                </td>
+              </tr>
+
+            <tr>
+              <td
+                style="padding: 0 0 36px 0; border-bottom: 1px solid #dfe5e9"
+                colspan="3"
+              ></td>
+            </tr>
+            <tr>
+              <td
+                align="center"
+                valign="top"
+                style="
+                  padding: 24px 0px 18px 0px;
+                  color: rgb(219, 210, 210);
+                  font-family: Helvetica Neue, Helvetica, sans-serif, Open Sans;
+                  font-size: 13px;
+                  font-weight: 400;
+                  mso-line-height-rule: exactly;
+                  line-height: 19px;
+                  margin: 0;
+                "
+                colspan="3"
+              >
+                <!-- COPY -->
+                <span style="
+                color: #000;
+                font-size: 14px;
+                font-weight: 800;
+                ">
+                  
+                  <span id="copyright"> </span> &#169; Gotaps.me .ALL Rights Reserved.
+                </span>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+
+    <script>
+      document
+        .getElementById("copyright")
+        .appendChild(document.createTextNode(new Date().getFullYear()));
+    </script>
+  </body>
+</html>';
+
+    return $template;
+  }
+
+  public function isSuspendNotificationEmailWithoutButton($message)
+  {
+    $template = '
+    <!doctype html>
+    <html>
+    <head>
+      <!-- Meta -->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic|Open+Sans:400,600,700,300,300italic,400italic"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <!-- CSS -->
+    <style type="text/css">
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: Helvetica Neue, Helvetica, sans-serif, "Open Sans";
+      }
+
+      [style*="Open Sans"] {
+        font-family: "Open Sans", Helvetica Neue, Helvetica, sans-serif !important;
+      }
+
+      [style*="Lato"] {
+        font-family: "Lato", Helvetica Neue, Helvetica, sans-serif !important;
+      }
+
+      a[x-apple-data-detectors="true"] {
+        color: inherit !important;
+        text-decoration: inherit !important;
+      }
+
+      a:link {
+        text-decoration: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Email header -->
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr>
+        <td align="center">
+          <table
+            border="0"
+            cellpadding="0"
+            cellspacing="0"
+            width="90%"
+            style="max-width: 600px"
+          >
+            <tr>
+              <td
+                align="center"
+                valign="top"
+                style="padding: 10px 0px 12px 0px"
+                colspan="3"
+              >
+                <img
+                  src="https://gotaps.me/wp-content/uploads/2022/05/gotapswenblognewvers-01.png"
+                  height="150"
+                  border="0"
+                  alt="Affinity"
+                  style="
+                    font-family: Arial, Helvetica, sans-serif;
+                    color: rgb(219, 210, 210);
+                    font-size: 17px;
+                    font-weight: bold;
+                  "
+                />
+              </td>
+            </tr>
+            <tr>
+              <td
+                align="center"
+                valign="top"
+                style="
+                  color: #000;
+                  font-family: Arial, Helvetica, sans-serif;
+                  font-size: 24px;
+                  font-weight: 800;
+                  mso-line-height-rule: exactly;
+                  line-height: 38px;
+                  margin: 0;
+                "
+                colspan="3"
+              >
+                GOtaps
+              </td>
+            </tr>
+
+            <!-- Email body -->
+
+            <tr>
+              <td style="padding: 0 0 24px 0" colspan="3"></td>
+            </tr>
+            <tr>
+              <td
+                align="center"
+                valign="top"
+                style="
+                  padding: 0px 0px 24px 0px;
+                  padding-left: 10px;
+                  color: #fff;
+                  font-family: Helvetica Neue, Helvetica, sans-serif, Open Sans;
+                  font-size: 17px;
+                  font-weight: 400;
+                  mso-line-height-rule: exactly;
+                  line-height: 25px;
+                  margin: 0;
+                  text-align: center;
+                  background: #000;
+                  padding: 30px 15px;
+                "
+                colspan="3"
+              >
+              ' . $message . '
+              </td>
+            </tr>
+            <tr>
+                <td width="5" style="width: 3px">&nbsp;</td>
+              </tr>
+  
+              <tr></tr>
+              <tr>
+                <td
+                  align="center"
+                  valign="top"
+                  style="
+                    padding: 24px 0px 0px 0px;
+                    color: rgb(219, 210, 210);
+                    font-family: Helvetica Neue, Helvetica, sans-serif, Open Sans;
+                    font-size: 13px;
+                    font-weight: 400;
+                    mso-line-height-rule: exactly;
+                    line-height: 19px;
+                    margin: 0;
+                  "
+                  colspan="3"
+                >
                   <span
                     style="
                       color: #fff;
