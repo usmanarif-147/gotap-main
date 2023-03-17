@@ -47,7 +47,14 @@ class UserController extends Controller
             'email' => ['req', 'email'],
             'username' => ['req', 'min:3'],
             'phone' => ['req', 'min:11'],
+            'job_title' => ['str'],
+            'company' => ['str']
         ]);
+
+        $username = str_replace(" ", "_", $request->username);
+
+        $request->username = $username;
+
         $this->helper->validateCSRF();
         $user = $this->db->where('id', $id)->first('users');
 
@@ -67,6 +74,7 @@ class UserController extends Controller
             }
         }
         $oldPhoto = $user->photo;
+        $oldCoverPhoto = $user->cover_photo;
 
         if ($request->hasFile('photo')) {
             $request->photo = $request->upload('photo', 'uploads/users', 'image');
@@ -74,10 +82,19 @@ class UserController extends Controller
             $request->unset('photo');
         }
 
+        if ($request->hasFile('cover_photo')) {
+            $request->cover_photo = $request->upload('cover_photo', 'uploads/users', 'image');
+        } else {
+            $request->unset('cover_photo');
+        }
+
         $user = $this->db->table('users')->where('id', $id)->update($request->all());
         if ($user) {
             if ($oldPhoto && file_exists($oldPhoto) && $request->hasFile('photo') && $user->photo) {
                 unlink($oldPhoto);
+            }
+            if ($oldCoverPhoto && file_exists($oldCoverPhoto) && $request->hasFile('cover_photo') && $user->cover_photo) {
+                unlink($oldCoverPhoto);
             }
             redirect('/dashboard/users');
         } else

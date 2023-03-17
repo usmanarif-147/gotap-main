@@ -34,9 +34,20 @@
               <?php csrf() ?>
               <input type="hidden" name="id" value="<?= $user->id ?>">
               <div class="card-body">
-                <div class="form-group">
-                  <label for="exampleInputTitle">Name</label>
-                  <input type="text" value="<?= $user->name ?>" class="form-control" name="name" id="exampleInputName" placeholder="Enter Name" required>
+
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label for="exampleInputTitle">Name</label>
+                      <input type="text" value="<?= $user->name ?>" class="form-control" name="name" id="exampleInputName" placeholder="Enter Name" required>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label for="exampleInputEmail">Email</label>
+                      <input type="email" value="<?= $user->email ?>" class="form-control" name="email" id="exampleInputEmail" placeholder="Enter Email" required>
+                    </div>
+                  </div>
                 </div>
 
                 <div class="row">
@@ -48,20 +59,21 @@
                           <input type="file" class="custom-file-input" name="photo" id="exampleInputFile">
                           <label class="custom-file-label" for="exampleInputFile">Choose photo</label>
                         </div>
-                        <!--<div class="input-group-append">
-                            <span class="input-group-text" id="">Upload</span>
-                            </div>-->
                       </div>
                     </div>
                   </div>
                   <div class="col-sm-6">
                     <div class="form-group">
-                      <label for="exampleInputEmail">Email</label>
-                      <input type="email" value="<?= $user->email ?>" class="form-control" name="email" id="exampleInputEmail" placeholder="Enter Email" required>
+                      <label for="exampleInputFile">Wallpaper Photo</label>
+                      <div class="input-group">
+                        <div class="custom-file">
+                          <input type="file" class="custom-file-input" name="cover_photo" id="exampleInputFile">
+                          <label class="custom-file-label" for="exampleInputFile">Choose photo</label>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
-
 
                 <div class="row">
                   <div class="col-sm-6">
@@ -77,7 +89,29 @@
                     </div>
                   </div>
                 </div>
+
                 <div class="row">
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label for="exampleInputUsername">Job title</label>
+                      <input type="username" value="<?= $user->job_title ?>" class="form-control" name="job_title" id="exampleInputUsername" placeholder="Enter Job Title">
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label for="exampleInputPhone">Company</label>
+                      <input type="phone" value="<?= $user->company ?>" class="form-control" name="company" id="exampleInputPhone" placeholder="Enter Company">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label>Bio</label>
+                      <textarea class="form-control" name="bio" id="" cols="30" rows="3"><?= $user->bio ? $user->bio : '' ?></textarea>
+                    </div>
+                  </div>
                   <div class="col-sm-6">
                     <div class="form-group">
                       <label>Verified</label>
@@ -87,16 +121,20 @@
                       </select>
                     </div>
                   </div>
+                </div>
+
+                <div class="row">
                   <div class="col-sm-6">
                     <div class="form-group">
                       <label>Show In All Users</label>
                       <select class="custom-select" name=" featured" required>
-                        <option value="1" <?= $user-> featured == 1 ? 'selected' : '' ?>>Yes</option>
-                        <option value="0" <?= $user-> featured == 0 ? 'selected' : '' ?>>No</option>
+                        <option value="1" <?= $user->featured == 1 ? 'selected' : '' ?>>Yes</option>
+                        <option value="0" <?= $user->featured == 0 ? 'selected' : '' ?>>No</option>
                       </select>
                     </div>
                   </div>
                 </div>
+
               </div>
 
 
