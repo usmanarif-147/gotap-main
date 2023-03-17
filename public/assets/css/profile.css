@@ -17,7 +17,7 @@ body {
     background-color: #fff;
 	/*background-image: url("../bg.png");*/
     color: #262626;
-    padding-bottom: 3rem;
+    /* padding-bottom: 3rem; */
 }
 
 img {
@@ -400,14 +400,13 @@ Remove or comment-out the code block below to see how the browser will fall-back
 			font-size:16px;
 			background:white;
 			text-align:center;
-			position:fixed;
+			/* position:fixed; */
 			font-weight:600;
 			bottom:0;
             left:0;
 			right:0;
 			opacity:.9;
-			padding:5px;
-			color:white;
+			
 		}
 		
 		

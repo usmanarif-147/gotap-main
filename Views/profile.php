@@ -16,7 +16,7 @@
 						}
 			?>
 
-						<div class="gallery-item col-6" tabindex="0">
+						<div class="gallery-item col-4" tabindex="0">
 							<?php
 							if (strtolower($platform->input) == 'email')
 								$ref = "mailto:$platform->path";
@@ -32,7 +32,7 @@
 								$ref = $platform->path;
 							?>
 							<a href="<?= $ref ?>" target="_blank">
-								<img id="platform_<?= $totalPlatforms ?>" src="/<?= $platform->icon ?>" class="gallery-image <?= isset($_GET['source']) ? 'ml-4' : '' ?>" alt="">
+								<img id="platform_<?= $totalPlatforms ?>" src="/<?= $platform->icon ?>" class="gallery-image img-fluid" alt="">
 
 							</a>
 						</div>
@@ -49,7 +49,7 @@
 
 <script>
 	const totalPlatforms = <?= $totalPlatforms ?>;
-	if (totalPlatforms % 2 != 0) {
+	if ((totalPlatforms + 1) % 3 != 0 && (totalPlatforms + 1) % 3 != 1) {
 		const platform = document.querySelector(`#platform_${totalPlatforms}`);
 		platform.classList.add('lastPlatform');
 		platform.parentElement.classList.remove('col-6');
